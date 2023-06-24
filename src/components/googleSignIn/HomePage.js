@@ -1,25 +1,45 @@
-import React, { useContext, useEffect } from "react";
-import { auth, provider } from "./config";
+import React, { useContext, useEffect, useState } from "react";
+import { auth, provider } from "../../firebase/config";
 import { signInWithPopup } from "firebase/auth";
 import { Box, Button, Text } from "@chakra-ui/react";
 import { SignedInContext } from "../../helper/Context";
 import LoggedInHomePage from "./LoggedInHomePage";
+import { addUser } from "../../firebase/firebaseFunctions";
 
 const HomePage = () => {
   const { value, setValue } = useContext(SignedInContext);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [photoURL, setPhotoURL] = useState("");
 
-  const handleClick = () => {
-    signInWithPopup(auth, provider).then((data) => {
-      console.log(data, " is the data");
-      console.log(data.user.uid, " is the uid");
-      setValue(data.user.email);
-      localStorage.setItem("email", data.user.email);
+  const handleClick = async () => {
+    signInWithPopup(auth, provider).then(({ user }) => {
+      console.log(user, " is the user");
+      const { uid, email, displayName, photoURL } = user;
+      setValue(uid);
+      setName(displayName);
+      setEmail(email);
+      setPhotoURL(photoURL);
+
+      localStorage.setItem("uid", user.uid);
     });
   };
 
   useEffect(() => {
-    setValue(localStorage.getItem("email"));
-  }, []);
+    setValue(localStorage.getItem("uid"));
+    if (name && email && value && photoURL) {
+      const addNewUser = async () => {
+        try {
+          addUser(value, name, email, photoURL);
+        } catch (error) {
+          console.log("error has occurred when adding: ", error);
+        }
+      };
+      addNewUser();
+      console.log("user has been added!");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [name, email, value, photoURL]);
 
   return (
     <Box>
