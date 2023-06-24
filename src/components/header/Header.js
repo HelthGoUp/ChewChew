@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Box, Button, Image, Tab, TabList, Tabs } from "@chakra-ui/react";
+import { SignedInContext } from "../../helper/Context";
+import { getUserData } from "../../firebase/firebaseFunctions";
 
 const Header = () => {
+  const { value } = useContext(SignedInContext);
+  const [imageURL, setImageURL] = useState("");
+
+  useEffect(() => {
+    const getPfp = async () => {
+      const values = await getUserData(value);
+      const { photoURL } = values;
+      setImageURL(photoURL);
+    };
+    getPfp();
+  }, []);
+
   return (
     <Box
       w="100%"
@@ -14,7 +28,11 @@ const Header = () => {
       alignItems="center"
     >
       <Image
-        src="https://40.media.tumblr.com/c0647b6bf08ce42043e1ad38953f92bb/tumblr_noorbyuO0p1spf5dlo1_500.jpg"
+        src={
+          imageURL !== ""
+            ? imageURL
+            : "https://40.media.tumblr.com/c0647b6bf08ce42043e1ad38953f92bb/tumblr_noorbyuO0p1spf5dlo1_500.jpg"
+        }
         alt="logo"
         borderRadius="full"
         boxSize="60px"
