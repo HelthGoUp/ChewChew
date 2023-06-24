@@ -1,9 +1,23 @@
 import React, { useContext, useEffect } from "react";
 import { SignedInContext } from "../../helper/Context";
 import { Box, Button } from "@chakra-ui/react";
+import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import { db } from "../../firebase/config";
+import { addPost } from "../../firebase/firebaseFunctions";
 
 const LoggedInHomePage = () => {
   const { value, setValue } = useContext(SignedInContext);
+
+  const getUsers = async () => {
+    const querySnapshot = await getDocs(collection(db, "users"));
+    querySnapshot.forEach((doc) => {
+      console.log(`${doc.id} => ${doc.data()}`);
+    });
+  };
+
+  const handleClick = async () => {
+    addPost(value, "STEAK");
+  };
 
   const logout = () => {
     console.log("logged out");
@@ -18,6 +32,11 @@ const LoggedInHomePage = () => {
 
   return (
     <Box>
+      <Button mt="20px" onClick={getUsers}>
+        Read the data!
+      </Button>
+      <Button onClick={handleClick}>handle click</Button>
+      {/* <Button onClick={addUser}>ADD ALEX</Button> */}
       <Button onClick={logout}>Log Out</Button>
     </Box>
   );
