@@ -4,6 +4,7 @@ import { Box, Button } from "@chakra-ui/react";
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import { addPost } from "../../firebase/firebaseFunctions";
+import Header from "../header/Header";
 
 const LoggedInHomePage = () => {
   const { value, setValue } = useContext(SignedInContext);
@@ -32,12 +33,15 @@ const LoggedInHomePage = () => {
 
   return (
     <Box>
-      <Button mt="20px" onClick={getUsers}>
-        Read the data!
-      </Button>
-      <Button onClick={handleClick}>handle click</Button>
-      {/* <Button onClick={addUser}>ADD ALEX</Button> */}
-      <Button onClick={logout}>Log Out</Button>
+      <Header />
+      <Box>
+        <Button mt="20px" onClick={getUsers}>
+          Read the data!
+        </Button>
+        <Button onClick={handleClick}>handle click</Button>
+        {/* <Button onClick={addUser}>ADD ALEX</Button> */}
+        <Button onClick={logout}>Log Out</Button>
+      </Box>
     </Box>
   );
 };

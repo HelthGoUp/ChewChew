@@ -4,7 +4,6 @@ import { Box } from "@chakra-ui/react";
 import { SignedInContext } from "./helper/Context";
 import { useState } from "react";
 import HomePage from "./components/googleSignIn/HomePage";
-import Header from "./components/header/Header";
 
 function App() {
   const [value, setValue] = useState("");
@@ -18,9 +17,7 @@ function App() {
         height="100vh"
         backgroundColor="#fee3b8"
         flexDirection="column"
-
       >
-        <Header />
         <HomePage />
       </Box>
     </SignedInContext.Provider>
