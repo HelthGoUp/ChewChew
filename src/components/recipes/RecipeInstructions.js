@@ -3,6 +3,7 @@ import { Box, Button, HStack, Image, Text, VStack } from "@chakra-ui/react";
 import { m } from "framer-motion";
 import RecipeLeft from "./RecipeLeft";
 import RecipeRight from "./RecipeRight";
+import Animation from "./Animation";
 
 const RecipeInstructions = () => {
 
@@ -40,10 +41,7 @@ const RecipeInstructions = () => {
 
 
   return (
-    <Box
-        display="grid"
-        gridTemplateColumns="repeat(10, 1fr)"
-    >
+    <Box>
         <HStack>
             <VStack w="333px" paddingTop="100px" paddingLeft="48px">
                 <Box>
@@ -72,6 +70,8 @@ const RecipeInstructions = () => {
                 </Box>
             </VStack>
         </HStack>
+
+        <Animation/>
         
     </Box>
   );
