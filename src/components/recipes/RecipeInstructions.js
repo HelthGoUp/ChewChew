@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Button, Image, Text } from "@chakra-ui/react";
+import { Box, Button, HStack, Image, Text, VStack } from "@chakra-ui/react";
 import { m } from "framer-motion";
 import RecipeLeft from "./RecipeLeft";
 import RecipeRight from "./RecipeRight";
@@ -44,32 +44,34 @@ const RecipeInstructions = () => {
         display="grid"
         gridTemplateColumns="repeat(10, 1fr)"
     >
-        <Box
-            style={{ gridColumn: '1/4'}}
-        >
-            {recipeList.map((recipe, index) => {
-                return <RecipeLeft
-                    image={recipe.image}
-                    ingredients={recipe.ingredients}
-                    equipment={recipe.equipment}
-                    key={index}
-                />
-            })}
-        </Box>
+        <HStack>
+            <VStack w="333px" paddingTop="100px" paddingLeft="48px">
+                <Box>
+                    {recipeList.map((recipe, index) => {
+                        return <RecipeLeft
+                            image={recipe.image}
+                            ingredients={recipe.ingredients}
+                            equipment={recipe.equipment}
+                            key={index}
+                        />
+                    })}
+                </Box>
+            </VStack>
 
-        <Box
-            style={{ gridColumn: '4/11'}}
-        >
-            {recipeList.map((recipe, index) => {
-                return <RecipeRight
-                    title={recipe.title}
-                    time={recipe.time}
-                    calories={recipe.calories}
-                    instructions={recipe.instructions}
-                    key={index}
-                />
-            })}
-        </Box>
+            <VStack w="675px" paddingTop="192px" alignItems="baseline" alignSelf="baseline">
+                <Box>
+                    {recipeList.map((recipe, index) => {
+                        return <RecipeRight
+                            title={recipe.title}
+                            time={recipe.time}
+                            calories={recipe.calories}
+                            instructions={recipe.instructions}
+                            key={index}
+                        />
+                    })}
+                </Box>
+            </VStack>
+        </HStack>
         
     </Box>
   );
