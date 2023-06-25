@@ -15,11 +15,15 @@ function App() {
     <SignedInContext.Provider value={{ value, setValue }}>
       <TabContext.Provider value={{ tab, setTab }}>
         <Box
+          position="fixed"
           display="flex"
           justifyContent="center"
           alignItems="center"
-          height="100vh"
-          backgroundColor="#fee3b8"
+          height="100%"
+          width="100%"
+          top="0px"
+          left="0px"
+          backgroundColor="#F5F5F5"
           flexDirection="column"
         >
           <HomePage/>
