@@ -127,7 +127,10 @@ const Recipes = () => {
                                 image={recipe.image}
                                 title={recipe.title}
                                 time={recipe.readyInMinutes}
-                                key={recipe.id}/>
+                                key={recipe.id}
+                                calories={recipe.calories}
+                                likes={recipe.likes}
+                                />
                                 </WrapItem>)
                     })):null
                     }

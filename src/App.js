@@ -23,7 +23,7 @@ function App() {
           width="100%"
           top="0px"
           left="0px"
-          backgroundColor="#fee3b8"
+          backgroundColor="#F5F5F5"
           flexDirection="column"
         >
           <HomePage/>
