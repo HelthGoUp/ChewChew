@@ -7,9 +7,11 @@ const RecipeCard = ({image, title, time}) => {
         <Box
             display="flex"
             flexDirection="column"
+            marginRight={"10px"}
+            marginTop={"10px"}
         >
-            <Image boxSize="150px" src={image}/>
-            <Text>{title}</Text>
+            <Image boxSize="220px" src={image} borderRadius={"6px"}/>
+            <Text className="description" overflowWrap={"true"}>{title}</Text>
             <Text>{time}</Text>
         </Box>
     )

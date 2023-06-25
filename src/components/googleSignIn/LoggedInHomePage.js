@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { SignedInContext } from "../../helper/Context";
+import { SignedInContext, TabContext } from "../../helper/Context";
 import {
   Box,
   Button,
@@ -21,14 +21,18 @@ import { addPost } from "../../firebase/firebaseFunctions";
 import Header from "../header/Header";
 import RecipeCard from "../RecipeCard";
 import NavbarPrivate from "../../navbar/NavbarPrivate";
+import Recipes from "../recipes/Recipes";
 
 const LoggedInHomePage = () => {
   const { value } = useContext(SignedInContext);
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { tab } = useContext(TabContext);
 
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  
   const [formValue, setFormValue] = useState("");
   const [imageURL, setImageURL] = useState(`/images/UploadPhotoButton.svg`);
   const [postType, setPostType] = useState("Cooked Creations");
+
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
@@ -102,8 +106,19 @@ const LoggedInHomePage = () => {
     <Box>
       {/* <Header /> */}
       <NavbarPrivate/>
+      {
+        tab ? (<Recipes/>) : (null)
+      }
+      
+    </Box>
+  );
+};
 
-      {recipeCardList.map((recipe, index) => {
+export default LoggedInHomePage;
+
+/*
+
+{recipeCardList.map((recipe, index) => {
         return <RecipeCard 
         image={recipe.image}
         title={recipe.title}
@@ -188,8 +203,5 @@ const LoggedInHomePage = () => {
           </ModalContent>
         </Modal>
       </Box>
-    </Box>
-  );
-};
 
-export default LoggedInHomePage;
+*/
