@@ -10,6 +10,7 @@ import {
   ModalContent,
   ModalHeader,
   ModalOverlay,
+  SimpleGrid,
   Tag,
   Textarea,
   useDisclosure,
@@ -114,12 +115,6 @@ const Forum = () => {
           location
         );
       };
-      // image -> downloadURL
-      // name -> get from value
-      // image -> get from value
-      // time -> get from current time
-      // description -> get from formValue
-      // location -> get from location
       makePost();
       handleClick();
       onClose();
@@ -147,7 +142,7 @@ const Forum = () => {
   };
 
   return (
-    <VStack w="80%" align="center" h="100%">
+    <VStack w="80%" h="100%">
       <HStack>
         <VStack>
           <Heading fontWeight="semibold">The Food Forum</Heading>
@@ -180,11 +175,17 @@ const Forum = () => {
               Food Share
             </Button>
           </HStack>
-          {posts.map((post, key) => {
-            return <ForumPost data={post} key={key} />;
-          })}
+          <Button onClick={onOpen}>Share your rendition</Button>
+          <SimpleGrid columns={4} spacing={4}>
+            {posts.map((post, key) => {
+              return (
+                <Box key={key} p={4}>
+                  <ForumPost data={post} key={key} />
+                </Box>
+              );
+            })}
+          </SimpleGrid>
         </VStack>
-        <Button onClick={onOpen}>Share your rendition</Button>
       </HStack>
       <Modal isOpen={isOpen} onClose={handleClose}>
         <ModalOverlay />

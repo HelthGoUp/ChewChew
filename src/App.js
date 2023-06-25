@@ -5,7 +5,7 @@ import { SignedInContext, TabContext } from "./helper/Context";
 import { useState } from "react";
 import HomePage from "./components/googleSignIn/HomePage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Recipes from "./components/recipes/Recipes"
+import Recipes from "./components/recipes/Recipes";
 import LoggedInHomePage from "./components/googleSignIn/LoggedInHomePage";
 function App() {
   const [value, setValue] = useState("");
@@ -26,7 +26,7 @@ function App() {
           backgroundColor="#F5F5F5"
           flexDirection="column"
         >
-          <HomePage/>
+          <HomePage />
         </Box>
       </TabContext.Provider>
     </SignedInContext.Provider>

@@ -20,8 +20,8 @@ const ForumPost = ({ data }) => {
   return (
     <VStack
       m="5px"
-      height="340px"
-      p="10px"
+      height="370px"
+      p="2px"
       w="fit-content"
       //   backgroundColor="green.200"
       align="flex-start"
@@ -62,6 +62,7 @@ const ForumPost = ({ data }) => {
           fontSize="13px"
           maxW="200px"
           overflowWrap="break-word"
+          textAlign="left"
         >
           {text}
         </Text>
