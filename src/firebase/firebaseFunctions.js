@@ -1,9 +1,7 @@
 import {
   addDoc,
   getDoc,
-  deleteDoc,
   getDocs,
-  updateDoc,
   doc,
   collection,
   setDoc,
@@ -18,6 +16,40 @@ const getUserData = async (id) => {
   } else {
     return null;
   }
+};
+
+const getCertainPosts = async (field) => {
+  const docRef = collection(db, "posts");
+  const querySnapshot = await getDocs(docRef);
+  const data = [];
+  querySnapshot.forEach((doc) => {
+    if (doc.data().tag === field) {
+      data.push(doc.data());
+    }
+  });
+  const sortedData = data.sort((a, b) => {
+    const timeA = new Date(`1970-01-01T${a.time}`);
+    const timeB = new Date(`1970-01-01T${b.time}`);
+
+    if (timeA > timeB) {
+      return -1;
+    } else if (timeA < timeB) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+  return sortedData;
+};
+
+const getPosts = async () => {
+  const docRef = collection(db, "posts");
+  const querySnapshot = await getDocs(docRef);
+  const data = [];
+  querySnapshot.forEach((doc) => {
+    data.push(doc.data());
+  });
+  return data;
 };
 
 const addUser = async (uid, name, email, photoURL) => {
@@ -63,4 +95,12 @@ const addPost = async (uid, text, time, tag, picture, location) => {
 
 const deleteUser = async () => {};
 
-export { getUserData, addUser, editUser, deleteUser, addPost };
+export {
+  getUserData,
+  addUser,
+  editUser,
+  deleteUser,
+  addPost,
+  getPosts,
+  getCertainPosts,
+};
