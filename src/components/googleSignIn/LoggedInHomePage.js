@@ -20,6 +20,7 @@ import { db } from "../../firebase/config";
 import { addPost } from "../../firebase/firebaseFunctions";
 import Header from "../header/Header";
 import RecipeCard from "../RecipeCard";
+import NavbarPrivate from "../../navbar/NavbarPrivate";
 
 const LoggedInHomePage = () => {
   const { value } = useContext(SignedInContext);
@@ -99,7 +100,8 @@ const LoggedInHomePage = () => {
 
   return (
     <Box>
-      <Header />
+      {/* <Header /> */}
+      <NavbarPrivate/>
 
       {recipeCardList.map((recipe, index) => {
         return <RecipeCard 
