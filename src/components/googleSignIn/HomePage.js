@@ -1,10 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { auth, provider } from "../../firebase/config";
 import { signInWithPopup } from "firebase/auth";
-import { Box, Button, Text } from "@chakra-ui/react";
+import { Box, Button, Image, Text } from "@chakra-ui/react";
 import { SignedInContext } from "../../helper/Context";
 import LoggedInHomePage from "./LoggedInHomePage";
 import { addUser } from "../../firebase/firebaseFunctions";
+import NavbarPublic from "../../navbar/NavbarPublic";
+import NotLoggedInHomePage from "../NotLoggedInHomePage";
 
 const HomePage = () => {
   const { value, setValue } = useContext(SignedInContext);
@@ -42,16 +44,18 @@ const HomePage = () => {
   }, [name, email, value, photoURL]);
 
   return (
-    <Box>
+    <Box w="100%">
+      <NavbarPublic/>
       {value ? (
         <LoggedInHomePage />
       ) : (
-        <Box justifyContent="center" textAlign="center" p="20px">
-          <Text>Welcome to wafflehacks2023 project!</Text>
-          <Button mt="20px" onClick={handleClick}>
-            Sign In With Google
-          </Button>
-        </Box>
+        <NotLoggedInHomePage />
+        // <Box justifyContent="center" textAlign="center" p="20px">
+        //   <Text>Welcome to wafflehacks2023 project!</Text>
+        //   <Button mt="20px" onClick={handleClick}>
+        //     Sign In With Google
+        //   </Button>
+        // </Box>
       )}
     </Box>
   );

@@ -2,27 +2,45 @@
   text-align: center;
 }
 
-.App-logo {
+/* .App-logo {
   height: 40vmin;
   pointer-events: none;
+} */
+
+.heading {
+  color: #0C5446;
+/* Heading 1 */
+  font-size: 48px;
+  /* font-family: Space Grotesk; */
+  font-weight: 600;
+  line-height: 100%;
 }
 
 .title {
-  font-size: xx-large;
+  font-size: xxx-large;
   font-weight: bold;
+  color: #0c5446;
+}
+
+.description {
+  color: #0c5446;
+
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
 }
 
 .subheading {
   font-weight: bold;
 }
 
-@media (prefers-reduced-motion: no-preference) {
+/* @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
+} */
 
-.App-header {
+/* .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -31,8 +49,8 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
-
+} */
+/* 
 .App-link {
   color: #61dafb;
 }
@@ -44,4 +62,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
