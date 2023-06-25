@@ -13,7 +13,7 @@ const RecipeCard = ({image, title, time, calories,likes,id,onOpen}) => {
             onClick={onOpen}
         >
             <Image boxSize="220px" src={image} borderRadius={"10px"}/>
-            <HStack spacing={"0.7em"}>
+            <HStack spacing={"0.7em"} >
                 <Text className="description minor" overflowWrap={"break-word"} alignItems={"flex-end"}>{time + " mins"}</Text>
                 <Text className="description minor" overflowWrap={"break-word"} textAlign={"end"}>{Math.round(calories) + " Cals"}</Text>
                 <Text className="description minor" overflowWrap={"break-word"} textAlign={"end"}>{"♥️ "+ likes}</Text>

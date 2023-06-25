@@ -7,7 +7,7 @@ const RecipeRight = ({title, time, calories, instructions, likes, servings}) => 
 
   return (
     <Box>
-        <Text className="heading" color="#0c5446" marginTop={"10px"}>
+        <Text className="heading" color="#0c5446" marginTop={"10px"}  overflowWrap={"break-word"}>
             {title}
         </Text>
         <Box display="flex" flexDirection="column" marginTop={"10px"}>
