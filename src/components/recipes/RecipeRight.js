@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Box, Button, Image, Text } from "@chakra-ui/react";
-
+import Animation from "./Animation";
 const RecipeRight = ({title, time, calories, instructions, likes, servings}) => {
 
     

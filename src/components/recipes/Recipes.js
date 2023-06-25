@@ -7,6 +7,7 @@ import RecipeInstructions from "./RecipeInstructions";
 import { m } from "framer-motion";
 import RecipeLeft from "./RecipeLeft";
 import RecipeRight from "./RecipeRight";
+import Animation from "./Animation";
 
 const Recipes = () => {
 
@@ -85,8 +86,11 @@ const Recipes = () => {
               <ModalBody>
               <Button variant='ghost' onClick={onClose}>← Back to Suggested Recipes</Button>
                  <RecipeInstructions />
+                 <Animation />
               </ModalBody>
               <ModalFooter>
+                <Center>
+                </Center>
               </ModalFooter>
             </ModalContent>
           </Modal>
@@ -227,7 +231,7 @@ const Recipes = () => {
         <Transition/>
         <NavbarPrivate/>
         { data===null ? (
-                <VStack alignItems={"left"} margin={"12%"} marginBottom={"30%"}>
+                <VStack alignItems={"flex-start"} margin={"12%"} marginBottom={"30%"}>
                 <Text className="title">Let's make a meal plan!</Text>
                 <Text className="subheading">What kind of ingredients do you have?</Text>
                 <Box display="flex" flexDirection="row">
@@ -267,7 +271,7 @@ const Recipes = () => {
                 </VStack>
                 ):(
                     <Box margin={"8%"} display={"flex"} flexDirection={"column"}marginTop={"12%"}>
-                    <VStack alignItems="left">
+                    <VStack alignItems="flex-start">
                     <Text className="title">Suggested Recipes</Text>
                     <Text className="subheading">Based on your available ingredients, you can make...</Text>
                     <Wrap alignItems={"center"}>
