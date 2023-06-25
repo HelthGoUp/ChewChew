@@ -25,13 +25,14 @@ import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { v4 } from "uuid";
 import NavbarPrivate from "../../navbar/NavbarPrivate";
 import Recipes from "../recipes/Recipes";
+import Forum from "../forum/Forum";
 
 const LoggedInHomePage = () => {
   const { value } = useContext(SignedInContext);
   const { tab } = useContext(TabContext);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
-  
+
   const [formValue, setFormValue] = useState("");
   const [location, setLocation] = useState("");
   const [imageURL, setImageURL] = useState(`/images/UploadPhotoButton.svg`);
@@ -41,7 +42,6 @@ const LoggedInHomePage = () => {
   const [downloadURL, setDownloadURL] = useState(null);
 
   const [currentTime, setCurrentTime] = useState("");
-
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
@@ -73,10 +73,6 @@ const LoggedInHomePage = () => {
     querySnapshot.forEach((doc) => {
       console.log(`${doc.id} => ${doc.data()}`);
     });
-  };
-
-  const handleClick = async () => {
-    addPost(value, "STEAK");
   };
 
   const uploadPost = () => {
@@ -159,30 +155,11 @@ const LoggedInHomePage = () => {
     );
   };
 
-  //example data
-  const recipeCardList = [
-    {
-      image:
-        "https://cravingsjournal.com/wp-content/uploads/2019/08/Bolognese-sauce-1.jpg",
-      title: "Minestrone Noodle Soup",
-      time: "40 min",
-    },
-    {
-      image:
-        "https://littlespoonfarm.com/wp-content/uploads/2021/09/Instant-Pot-Beef-Stew-Recipe.jpg",
-      title: "Beef Stew",
-      time: "30 min",
-    },
-  ];
-
   return (
-    <Box>
+    <Box h="80vh" align="center">
       {/* <Header /> */}
-      <NavbarPrivate/>
-      {
-        tab ? (<Recipes/>) : (null)
-      }
-      
+      <NavbarPrivate />
+      {tab ? <Recipes /> : <Forum />}
     </Box>
   );
 };
