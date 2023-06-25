@@ -1,22 +1,27 @@
 import React, { useState } from "react";
-import { Box, Button, Checkbox, Image, Text } from "@chakra-ui/react";
+import { Box, Button, Checkbox, Image, Text, border } from "@chakra-ui/react";
 
-const RecipeLeft = ({image, ingredients, equipment}) => {
+const RecipeLeft = ({image, missedIngredients, usedIngredients, equipment}) => {
 
   return (
-    <Box paddingTop="100px" paddingBottom="15px">
+    <Box paddingTop="20px" paddingBottom="15px">
         <Image src={image}
             style={{
                 width: "333px",
                 height: "216px",
-                objectFit: "contain"
+                borderRadius: "10px"
             }}
         />
         <Text className="headingTwo" color="#0c5446">
             Ingredients
         </Text>
         <Box display="flex" flexDirection="column">
-            {ingredients.map((ingredient, index) => {
+            {usedIngredients.map((ingredient, index) => {
+                return <Checkbox key={index} color="#0c5446" isChecked={true}>
+                    {ingredient}
+                </Checkbox>
+            })}
+            {missedIngredients.map((ingredient, index) => {
                 return <Checkbox key={index} color="#0c5446">
                     {ingredient}
                 </Checkbox>

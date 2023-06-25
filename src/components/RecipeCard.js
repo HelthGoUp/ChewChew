@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, HStack, Image, Text } from "@chakra-ui/react";
 
-const RecipeCard = ({image, title, time, calories,likes}) => {
+const RecipeCard = ({image, title, time, calories,likes,id,onOpen}) => {
 
     return (
         <Box
@@ -10,6 +10,7 @@ const RecipeCard = ({image, title, time, calories,likes}) => {
             marginRight={"10px"}
             marginTop={"10px"}
             width={"220px"}
+            onClick={onOpen}
         >
             <Image boxSize="220px" src={image} borderRadius={"10px"}/>
             <HStack spacing={"0.7em"}>
