@@ -2,11 +2,12 @@ import React, { useContext, useEffect, useState } from "react";
 import { Button, Box, Image, Text, Tab, TabList, Tabs } from "@chakra-ui/react";
 import Logo from "./../images/Logo-with-wordmark.svg"
 import { getUserData } from "../firebase/firebaseFunctions";
-import { SignedInContext } from "../helper/Context";
+import { SignedInContext, TabContext } from "../helper/Context";
 
-const NavbarPrivate = () => {
+const NavbarPrivate = ({toggle}) => {
 
     const { value } = useContext(SignedInContext);
+    const {tab, setTab} = useContext(TabContext);
     const [imageURL, setImageURL] = useState("");
   
     useEffect(() => {
@@ -18,6 +19,13 @@ const NavbarPrivate = () => {
       getPfp();
     }, []);
 
+    const toggleFood = () => {
+        setTab(true);
+    }
+
+    const toggleForum = () => {
+        setTab(false);
+    }
     return (
         <Box
             w="1280px"
@@ -34,10 +42,10 @@ const NavbarPrivate = () => {
             <Image src={Logo} boxSize="150px" alt="logo" position="absolute" left="120px"/>
             <Tabs variant="soft-rounded">
                 <TabList>
-                <Tab className="tabs" position="absolute" left="560px" top="18px">
+                <Tab className="tabs" position="absolute" left="560px" top="18px" onClick={toggleFood} isSelected={tab}>
                     Make Food
                 </Tab>
-                <Tab className="tabs" position="absolute" left="750px" top="18px">
+                <Tab className="tabs" position="absolute" left="750px" top="18px" onClick={toggleForum} isSelected={!tab}>
                     Share Food
                 </Tab>
                 </TabList>

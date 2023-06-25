@@ -1,30 +1,30 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { Box } from "@chakra-ui/react";
-import { SignedInContext } from "./helper/Context";
+import { SignedInContext, TabContext } from "./helper/Context";
 import { useState } from "react";
 import HomePage from "./components/googleSignIn/HomePage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import Recipes from "./components/recipes/Recipes"
+import LoggedInHomePage from "./components/googleSignIn/LoggedInHomePage";
 function App() {
   const [value, setValue] = useState("");
+  const [tab, setTab] = useState(true);
 
   return (
     <SignedInContext.Provider value={{ value, setValue }}>
-      <Box
-        display="flex"
-        justifyContent="center"
-        alignItems="center"
-        height="100vh"
-        backgroundColor="#fee3b8"
-        flexDirection="column"
-      >
-      <BrowserRouter basename="">
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-        </Routes>
-      </BrowserRouter>
-      </Box>
+      <TabContext.Provider value={{ tab, setTab }}>
+        <Box
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          height="100vh"
+          backgroundColor="#fee3b8"
+          flexDirection="column"
+        >
+          <HomePage/>
+        </Box>
+      </TabContext.Provider>
     </SignedInContext.Provider>
   );
 }
