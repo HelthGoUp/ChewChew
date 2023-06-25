@@ -9,32 +9,48 @@ const RecipeInstructions = () => {
 
     const recipeList = [
         {
-            title: "Beef Bolognese",
-            time: "45 min",
-            calories: "560 cal",
-            image: "https://media.blueapron.com/recipes/2527/square_newsletter_images/1506122712-1-0002-4623/1002_2PRE08_Beef-Bolognese_89134_WEB_SQ.jpg?quality=80&width=850&format=pjpg",
-            ingredients: [
-                "1 pound (450 g) ground beef",
-                "2 tablespoons olive oil",
-                "1 medium onion, finely chopped",
-                "2 cloves garlic, minced",
-                "2 stalks celery, finely chopped",
-                "1 can (6 ounces) tomato paste",
-                "1 teaspoon dried basil",
-                "Salt and pepper to taste",
-                "8 ounces pasta (spaghetti or any other type)"
+            "id": 652591,
+            "title": "Mummy Meatballs with Spaghetti",
+            "image": "https://spoonacular.com/recipeImages/652591-312x231.jpg",
+            "usedIngredientCount": 4,
+            "missedIngredientCount": 6,
+            "missedIngredients": [
+                "1/2 cup soft bread crumbs",
+                "1 large egg",
+                "2 teaspoons garlic paste",
+                "1 teaspoon Italian seasoning",
+                "1/4 cup grated Parmesan cheese",
+                "pimiento stuffed green olives"
             ],
-            equipment: [
-                "Large skillet or pot",
-                "Chopping board and knife"
+            "usedIngredients": [
+                "1 pound lean ground beef",
+                "cooked spaghetti noodles or other cooked pasta",
+                "1 quart marinara sauce or spaghetti sauce",
+                "cooked wide rice noodles or extra wide egg noodles"
             ],
-            instructions: [
-                "Heat the olive oil in a large skillet or pot over medium heat",
-                "Add chopped onion",
-                "Stir in the tomato paste",
-                "Add the diced tomatoes",
-                "Reduce the heat to low and simmer",
-                "Meanwhile, cook the pasta according"
+            "unusedIngredients": [
+                "Chicken",
+                "plums"
+            ],
+            "likes": 2,
+            "servings": 16,
+            "readyInMinutes": 45,
+            "vegetarian": false,
+            "calories": 33.164375,
+            "instructions": [
+                "Mix together ingredients for meatballs in a bowl.Preheat oven to 350F.Grease an 8 hole muffin tin.Use an ice cream scoop to divide out meatball mix and drop into muffin pan.",
+                "Bake meatballs, for 35 minutes or until inside reaches 160F on an instant read thermometer.",
+                "Drain meatballs on a cookie rack.",
+                "Heat marinara sauce and cook spaghetti and rice noodles (separately) according to package directions.",
+                "Drain pasta, keep spaghetti warm and cool rice noodles in cold water then drain.Slice meatballs in half horizontally to make two pieces, each with a flat surface.Pat rice noodles dry with paper toweling and layer over the top of the meatball, tucking sliced olives in for eyes.It is best to let the meatballs sit still for about 15 minutes so they become more tacky and hold together better.But since they will get cold, microwave them on a microwave-safe plate for a minute, then carefully place a mummy meatball onto a nest of sauced spaghetti and serve."
+            ],
+            "equipment": [
+                "ice cream scoop",
+                "kitchen thermometer",
+                "muffin tray",
+                "microwave",
+                "oven",
+                "bowl"
             ]
         }
     ]
@@ -43,30 +59,29 @@ const RecipeInstructions = () => {
   return (
     <Box>
         <HStack>
-            <VStack w="333px" paddingTop="100px" paddingLeft="48px">
+            <VStack w="333px" paddingLeft="48px" marginRight={"20px"}>
                 <Box>
-                    {recipeList.map((recipe, index) => {
-                        return <RecipeLeft
-                            image={recipe.image}
-                            ingredients={recipe.ingredients}
-                            equipment={recipe.equipment}
-                            key={index}
-                        />
-                    })}
+                     <RecipeLeft
+                        image={recipeList[0].image}
+                        missedIngredients={recipeList[0].missedIngredients}
+                        usedIngredients={recipeList[0].usedIngredients}
+                        equipment={recipeList[0].equipment}
+                        key={1}
+                    />
                 </Box>
             </VStack>
 
-            <VStack w="675px" paddingTop="192px" alignItems="baseline" alignSelf="baseline">
+            <VStack w="675px" paddingTop="19px" alignItems="baseline" alignSelf="baseline">
                 <Box>
-                    {recipeList.map((recipe, index) => {
-                        return <RecipeRight
-                            title={recipe.title}
-                            time={recipe.time}
-                            calories={recipe.calories}
-                            instructions={recipe.instructions}
-                            key={index}
+                        <RecipeRight
+                            title={recipeList[0].title}
+                            time={recipeList[0].readyInMinutes}
+                            calories={recipeList[0].calories}
+                            instructions={recipeList[0].instructions}
+                            likes={recipeList[0].likes}
+                            servings = {recipeList[0].servings}
+                            key={2}
                         />
-                    })}
                 </Box>
             </VStack>
         </HStack>
