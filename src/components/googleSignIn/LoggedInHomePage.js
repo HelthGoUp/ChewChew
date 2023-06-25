@@ -29,7 +29,6 @@ import RecipeInstructions from "../recipes/RecipeInstructions";
 import Recipes from "../recipes/Recipes";
 import Forum from "../forum/Forum";
 
-
 const LoggedInHomePage = () => {
   const { value } = useContext(SignedInContext);
   const { tab } = useContext(TabContext);
@@ -46,49 +45,12 @@ const LoggedInHomePage = () => {
 
   const [currentTime, setCurrentTime] = useState("");
 
-  const handleImageUpload = (event) => {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-    setImageUpload(file);
-
-    reader.onload = (e) => {
-      setImageURL(e.target.result);
-    };
-
-    reader.readAsDataURL(file);
-  };
-
   const resetValues = () => {
     setFormValue("");
     setLocation("");
     setDownloadURL(null);
     setPostType("Cooked Creations");
     setImageURL(`/images/UploadPhotoButton.svg`);
-  };
-
-  const handleClose = () => {
-    onClose();
-    resetValues();
-  };
-
-  const getUsers = async () => {
-    const querySnapshot = await getDocs(collection(db, "users"));
-    querySnapshot.forEach((doc) => {
-      console.log(`${doc.id} => ${doc.data()}`);
-    });
-  };
-
-  const uploadPost = () => {
-    console.log(imageUpload.name, " is the url");
-    const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
-    // const reference = ref(storage, imageUpload.name);
-    uploadBytes(imageRef, imageUpload)
-      .then((snapshot) => {
-        return getDownloadURL(snapshot.ref);
-      })
-      .then((downloadURL) => {
-        setDownloadURL(downloadURL);
-      });
   };
 
   // set the time
