@@ -21,6 +21,7 @@ import { addPost } from "../../firebase/firebaseFunctions";
 import Header from "../header/Header";
 import RecipeCard from "../RecipeCard";
 import NavbarPrivate from "../../navbar/NavbarPrivate";
+import RecipeInstructions from "../recipes/RecipeInstructions";
 
 const LoggedInHomePage = () => {
   const { value } = useContext(SignedInContext);
@@ -100,95 +101,99 @@ const LoggedInHomePage = () => {
 
   return (
     <Box>
-      {/* <Header /> */}
       <NavbarPrivate/>
-
-      {recipeCardList.map((recipe, index) => {
-        return <RecipeCard 
-        image={recipe.image}
-        title={recipe.title}
-        time={recipe.time}
-        key={index}/>
-      })}
-
-      <Box>
-        <Button mt="20px" onClick={getUsers}>
-          Read the data!
-        </Button>
-        <Button onClick={onOpen}>Open the modal</Button>
-        <Button onClick={handleClick}>handle click</Button>
-        <Button onClick={logout}>Log Out</Button>
-        <Modal isOpen={isOpen} onClose={handleClose}>
-          <ModalOverlay />
-          <ModalContent maxW="800px">
-            <HStack position="relative" backgroundColor="#fcfaef">
-              <label htmlFor="imageUpload">
-                <Img
-                  _hover={{
-                    cursor: "pointer",
-                  }}
-                  m="20px"
-                  boxSize="310px"
-                  src={imageURL}
-                  alt="upload image"
-                />
-                <input
-                  id="imageUpload"
-                  type="file"
-                  accept="image/*"
-                  onChange={handleImageUpload}
-                  style={{ display: "none" }}
-                />
-              </label>
-              <VStack alignItems="baseline">
-                <ModalHeader
-                  pt="0px"
-                  pl="0px"
-                  fontSize="30px"
-                  className="header-font"
-                  color="#0C5446"
-                >
-                  Share your food!
-                </ModalHeader>
-                <Textarea
-                  fontSize="1em"
-                  width="420px"
-                  h="100px"
-                  placeholder="Write a caption..."
-                  value={formValue}
-                  onChange={(event) => {
-                    setFormValue(event.target.value);
-                  }}
-                />
-                <HStack mt="10px">
-                  <PostTag text="Cooked Creations" />
-                  <PostTag text="Free Food" />
-                </HStack>
-                <ModalCloseButton
-                  left="390px"
-                  top="-225px"
-                  position="relative"
-                />
-
-                <Button
-                  w="100%"
-                  backgroundColor="#FF6700"
-                  color="white"
-                  _hover={{ backgroundColor: "#BF4D00" }}
-                  isDisabled={
-                    formValue === "" ||
-                    imageURL === `/images/UploadPhotoButton.svg`
-                  }
-                  fontSize="18px"
-                >
-                  Post
-                </Button>
-              </VStack>
-            </HStack>
-          </ModalContent>
-        </Modal>
-      </Box>
+      <RecipeInstructions/>
     </Box>
+    // <Box>
+    //   {/* <Header /> */}
+    //   <NavbarPrivate/>
+
+    //   {recipeCardList.map((recipe, index) => {
+    //     return <RecipeCard 
+    //     image={recipe.image}
+    //     title={recipe.title}
+    //     time={recipe.time}
+    //     key={index}/>
+    //   })}
+
+    //   <Box>
+    //     <Button mt="20px" onClick={getUsers}>
+    //       Read the data!
+    //     </Button>
+    //     <Button onClick={onOpen}>Open the modal</Button>
+    //     <Button onClick={handleClick}>handle click</Button>
+    //     <Button onClick={logout}>Log Out</Button>
+    //     <Modal isOpen={isOpen} onClose={handleClose}>
+    //       <ModalOverlay />
+    //       <ModalContent maxW="800px">
+    //         <HStack position="relative" backgroundColor="#fcfaef">
+    //           <label htmlFor="imageUpload">
+    //             <Img
+    //               _hover={{
+    //                 cursor: "pointer",
+    //               }}
+    //               m="20px"
+    //               boxSize="310px"
+    //               src={imageURL}
+    //               alt="upload image"
+    //             />
+    //             <input
+    //               id="imageUpload"
+    //               type="file"
+    //               accept="image/*"
+    //               onChange={handleImageUpload}
+    //               style={{ display: "none" }}
+    //             />
+    //           </label>
+    //           <VStack alignItems="baseline">
+    //             <ModalHeader
+    //               pt="0px"
+    //               pl="0px"
+    //               fontSize="30px"
+    //               className="header-font"
+    //               color="#0C5446"
+    //             >
+    //               Share your food!
+    //             </ModalHeader>
+    //             <Textarea
+    //               fontSize="1em"
+    //               width="420px"
+    //               h="100px"
+    //               placeholder="Write a caption..."
+    //               value={formValue}
+    //               onChange={(event) => {
+    //                 setFormValue(event.target.value);
+    //               }}
+    //             />
+    //             <HStack mt="10px">
+    //               <PostTag text="Cooked Creations" />
+    //               <PostTag text="Free Food" />
+    //             </HStack>
+    //             <ModalCloseButton
+    //               left="390px"
+    //               top="-225px"
+    //               position="relative"
+    //             />
+
+    //             <Button
+    //               w="100%"
+    //               backgroundColor="#FF6700"
+    //               color="white"
+    //               _hover={{ backgroundColor: "#BF4D00" }}
+    //               isDisabled={
+    //                 formValue === "" ||
+    //                 imageURL === `/images/UploadPhotoButton.svg`
+    //               }
+    //               fontSize="18px"
+    //             >
+    //               Post
+    //             </Button>
+    //           </VStack>
+    //         </HStack>
+    //       </ModalContent>
+    //     </Modal>
+    //   </Box>
+    // </Box>
   );
 };
 

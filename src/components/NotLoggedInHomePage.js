@@ -9,10 +9,10 @@ const NotLoggedInHomePage = () => {
         <Box w="1280px" h="832px">
             <NavbarPublic/>
             <Text className="heading" w="687px" position="absolute" left="120px" top="192px">Free food from your fridge and your friends :)</Text>
-            <Text className="description" position="absolute" w="410px" left="120px" top="330px">
-                Find recipes for ingredients you already have
-                Share your cooking with your community
-                Find free food around your campus
+            <Text className="description" position="absolute" w="415px" left="120px" top="330px">
+                Find recipes for ingredients you already have.
+                Share your cooking with your community.
+                Find free food around your campus.
             </Text>
             <Button position="absolute" left="120px" top="440px" bg="#ff6700" color="white"
                 _hover={{
