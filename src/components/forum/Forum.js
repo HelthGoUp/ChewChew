@@ -144,15 +144,20 @@ const Forum = () => {
   return (
     <VStack w="80%" h="100%">
       <HStack>
-        <VStack>
-          <Heading fontWeight="semibold">The Food Forum</Heading>
-          <Heading fontSize="14px" fontWeight="normal">
+        <VStack alignItems={"flex-start"} spacing={"1em"}>
+          <HStack>
+          <Heading className="heading" fontWeight="semibold">The Food Forum</Heading>
+          <Button alignSelf={"flex-end"} onClick={onOpen} 
+            backgroundColor={"orange.500"}
+            color={"white"}>Share your rendition</Button>
+          </HStack>
+          <Heading className="description" fontSize="14px" fontWeight="700">
             {state === "Cooked Creations"
               ? "See others' delicious creations with their leftover ingredients!"
               : "Find free food around the University of British Columbia campus!"}
           </Heading>
-          <HStack>
-            <Button
+          <HStack marginTop={"4px"}>
+            <Button maxHeight={"30px"}
               onClick={() => {
                 setState("Cooked Creations");
               }}
@@ -163,7 +168,7 @@ const Forum = () => {
             >
               Cooked Creations
             </Button>
-            <Button
+            <Button maxHeight={"30px"}
               onClick={() => {
                 setState("Food Share");
               }}
@@ -175,7 +180,6 @@ const Forum = () => {
               Food Share
             </Button>
           </HStack>
-          <Button onClick={onOpen}>Share your rendition</Button>
           <SimpleGrid columns={4} spacing={4}>
             {posts.map((post, key) => {
               return (
