@@ -46,15 +46,15 @@ const addUser = async (uid, name, email, photoURL) => {
 
 const editUser = async () => {};
 
-const addPost = async (uid, text, date, tag, picture, name) => {
+const addPost = async (uid, text, time, tag, picture, location) => {
   try {
     await addDoc(collection(db, "posts"), {
       uid: uid,
       text: text,
-      date: date,
+      time: time,
       tag: tag,
       picture: picture,
-      name: name,
+      location: location,
     });
   } catch (error) {
     console.log("encountered error when adding a post: ", error);
