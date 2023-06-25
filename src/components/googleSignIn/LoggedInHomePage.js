@@ -24,7 +24,10 @@ import RecipeCard from "../RecipeCard";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { v4 } from "uuid";
 import NavbarPrivate from "../../navbar/NavbarPrivate";
+
+import RecipeInstructions from "../recipes/RecipeInstructions";
 import Recipes from "../recipes/Recipes";
+
 
 const LoggedInHomePage = () => {
   const { value } = useContext(SignedInContext);
@@ -177,7 +180,6 @@ const LoggedInHomePage = () => {
 
   return (
     <Box>
-      {/* <Header /> */}
       <NavbarPrivate/>
       {
         tab ? (<Recipes/>) : (null)
@@ -292,5 +294,4 @@ export default LoggedInHomePage;
           </ModalContent>
         </Modal>
       </Box>
-
 */
