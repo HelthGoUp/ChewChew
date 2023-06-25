@@ -14,7 +14,10 @@ const NotLoggedInHomePage = () => {
                 Share your cooking with your community
                 Find free food around your campus
             </Text>
-            <Button position="absolute" left="120px" top="440px" bg="#ff6700" color="white">Let's get cooking!</Button>
+            <Button position="absolute" left="120px" top="440px" bg="#ff6700" color="white"
+                _hover={{
+                    backgroundColor: "#bf4d00"
+                }}>Let's get cooking!</Button>
             <Image position="absolute" left="352px" top="512px" src={Train}/>
 
         </Box>

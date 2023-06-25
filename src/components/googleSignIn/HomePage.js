@@ -45,7 +45,7 @@ const HomePage = () => {
 
   return (
     <Box w="100%">
-      <NavbarPublic/>
+      {!value && <NavbarPublic/>}
       {value ? (
         <LoggedInHomePage />
       ) : (
