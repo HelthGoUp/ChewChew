@@ -7,6 +7,7 @@ const ForumPost = ({ data }) => {
 
   const [userName, setUserName] = useState("");
   const [pfp, setPfp] = useState("");
+  const [hover, setHover] = useState(false);
 
   useEffect(() => {
     const getDetails = async () => {
@@ -19,13 +20,15 @@ const ForumPost = ({ data }) => {
 
   return (
     <VStack
-      m="5px"
-      height="370px"
-      p="2px"
+      height="355px"
+      p="7px"
       w="fit-content"
-      //   backgroundColor="green.200"
+      backgroundColor={hover?"#F4F6F9":""}
+      borderRadius={"9px"}
       align="flex-start"
       spacing="5px"
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
     >
       <Img
         backgroundColor="white"

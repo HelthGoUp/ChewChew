@@ -105,7 +105,7 @@ const Recipes = () => {
         onOpen();
     }
   
-
+    const [hover, setHover] = useState(false);
     const RecipeCard = ({image, title, time, calories,likes,id}) => {
 
         return (
@@ -115,7 +115,12 @@ const Recipes = () => {
                 marginRight={"10px"}
                 marginTop={"10px"}
                 width={"220px"}
+                backgroundColor={hover?"#F4F6F9":""}
+                borderRadius={"8px"}
+                padding={"8px"}
                 onClick={() => onRecipeClick(id)}
+                onMouseEnter={() => setHover(true)}
+                onMouseLeave={() => setHover(false)}
             >
                 <Image boxSize="220px" src={image} borderRadius={"10px"}/>
                 <HStack spacing={"0.7em"}>
@@ -123,7 +128,7 @@ const Recipes = () => {
                     <Text className="description minor" overflowWrap={"break-word"} textAlign={"end"}>{Math.round(calories) + " Cals"}</Text>
                     <Text className="description minor" overflowWrap={"break-word"} textAlign={"end"}>{"♥️ "+ likes}</Text>
                 </HStack>
-                <Text className="description major" overflowWrap={"break-word"}>{title}</Text>
+                <Text className="description major" overflowWrap={"break-word"} textAlign={"start"}>{title}</Text>
             </Box>
         )
     }

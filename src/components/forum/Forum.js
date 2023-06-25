@@ -15,6 +15,8 @@ import {
   Textarea,
   useDisclosure,
   VStack,
+  WrapItem,
+  Wrap
 } from "@chakra-ui/react";
 import React, { useContext, useEffect, useState } from "react";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
@@ -144,10 +146,10 @@ const Forum = () => {
   return (
     <VStack w="80%" h="100%">
       <HStack>
-        <VStack alignItems={"flex-start"} spacing={"1em"}>
-          <HStack>
+        <VStack alignItems={"flex-start"} spacing={"1em"} left={"0"}>
+          <HStack justify="space-between" >
           <Heading className="heading" fontWeight="semibold">The Food Forum</Heading>
-          <Button alignSelf={"flex-end"} onClick={onOpen} 
+          <Button alignSelf={"flex-end"} onClick={onOpen} right={"0"}
             backgroundColor={"orange.500"}
             color={"white"}>Share your rendition</Button>
           </HStack>
@@ -180,15 +182,15 @@ const Forum = () => {
               Food Share
             </Button>
           </HStack>
-          <SimpleGrid columns={4} spacing={4}>
+          <Wrap>
             {posts.map((post, key) => {
               return (
-                <Box key={key} p={4}>
+                <WrapItem key={key}>
                   <ForumPost data={post} key={key} />
-                </Box>
+                </WrapItem>
               );
             })}
-          </SimpleGrid>
+          </Wrap>
         </VStack>
       </HStack>
       <Modal isOpen={isOpen} onClose={handleClose}>
