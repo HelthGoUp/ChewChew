@@ -275,7 +275,7 @@ const Recipes = () => {
                 </Box>
                 </VStack>
                 ):(
-                    <Box margin={"8%"} display={"flex"} flexDirection={"column"}marginTop={"12%"}>
+                    <Box margin={"8%"} display={"flex"} flexDirection={"column"}marginTop={"5%"}>
                     <VStack alignItems="flex-start">
                     <Text className="title">Suggested Recipes</Text>
                     <Text className="subheading">Based on your available ingredients, you can make...</Text>
