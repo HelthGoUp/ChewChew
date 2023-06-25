@@ -28,7 +28,7 @@ const NavbarPrivate = ({toggle}) => {
     }
     return (
         <Box
-            w="1280px"
+            w="100%"
             h="80px"
             pos="fixed"
             top="0"
@@ -39,13 +39,13 @@ const NavbarPrivate = ({toggle}) => {
             paddingLeft="40px"
             justifyContent="space-between"
         >
-            <Image src={Logo} boxSize="150px" alt="logo" position="absolute" left="120px"/>
+            <Image src={Logo} boxSize="150px" alt="logo" position="absolute" left="80px"/>
             <Tabs variant="soft-rounded">
                 <TabList>
-                <Tab className="tabs" position="absolute" left="560px" top="18px" onClick={toggleFood} isSelected={tab}>
+                <Tab className="tabs" position="absolute" left="45%" top="18px" onClick={toggleFood} isSelected={tab}>
                     Make Food
                 </Tab>
-                <Tab className="tabs" position="absolute" left="750px" top="18px" onClick={toggleForum} isSelected={!tab}>
+                <Tab className="tabs" position="absolute" left="55%" top="18px" onClick={toggleForum} isSelected={!tab}>
                     Share Food
                 </Tab>
                 </TabList>
@@ -60,7 +60,8 @@ const NavbarPrivate = ({toggle}) => {
                 borderRadius="full"
                 boxSize="60px"
                 position="absolute"
-                left="1150px"
+                top="10px"
+                right="40px"
             />
         </Box>
     )
