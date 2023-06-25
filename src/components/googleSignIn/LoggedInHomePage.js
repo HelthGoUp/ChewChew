@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
-import { SignedInContext } from "../../helper/Context";
+import React, { useContext, useState, useEffect } from "react";
+import { SignedInContext, TabContext } from "../../helper/Context";
 import {
   Box,
   Button,
@@ -23,11 +23,15 @@ import Header from "../header/Header";
 import RecipeCard from "../RecipeCard";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { v4 } from "uuid";
+import NavbarPrivate from "../../navbar/NavbarPrivate";
+import Recipes from "../recipes/Recipes";
 
 const LoggedInHomePage = () => {
   const { value } = useContext(SignedInContext);
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { tab } = useContext(TabContext);
 
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  
   const [formValue, setFormValue] = useState("");
   const [location, setLocation] = useState("");
   const [imageURL, setImageURL] = useState(`/images/UploadPhotoButton.svg`);
@@ -37,6 +41,7 @@ const LoggedInHomePage = () => {
   const [downloadURL, setDownloadURL] = useState(null);
 
   const [currentTime, setCurrentTime] = useState("");
+
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
@@ -172,17 +177,26 @@ const LoggedInHomePage = () => {
 
   return (
     <Box>
-      <Header />
+      {/* <Header /> */}
+      <NavbarPrivate/>
+      {
+        tab ? (<Recipes/>) : (null)
+      }
+      
+    </Box>
+  );
+};
 
-      {recipeCardList.map((recipe, index) => {
-        return (
-          <RecipeCard
-            image={recipe.image}
-            title={recipe.title}
-            time={recipe.time}
-            key={index}
-          />
-        );
+export default LoggedInHomePage;
+
+/*
+
+{recipeCardList.map((recipe, index) => {
+        return <RecipeCard 
+        image={recipe.image}
+        title={recipe.title}
+        time={recipe.time}
+        key={index}/>
       })}
 
       <Box>
@@ -278,8 +292,5 @@ const LoggedInHomePage = () => {
           </ModalContent>
         </Modal>
       </Box>
-    </Box>
-  );
-};
 
-export default LoggedInHomePage;
+*/

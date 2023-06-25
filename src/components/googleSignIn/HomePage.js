@@ -10,8 +10,18 @@ const HomePage = () => {
 
   return (
     <Box w="100%">
-      <NavbarPublic />
-      {value ? <LoggedInHomePage /> : <NotLoggedInHomePage />}
+      {!value && <NavbarPublic/>}
+      {value ? (
+        <LoggedInHomePage />
+      ) : (
+        <NotLoggedInHomePage />
+        // <Box justifyContent="center" textAlign="center" p="20px">
+        //   <Text>Welcome to wafflehacks2023 project!</Text>
+        //   <Button mt="20px" onClick={handleClick}>
+        //     Sign In With Google
+        //   </Button>
+        // </Box>
+      )}
     </Box>
   );
 };

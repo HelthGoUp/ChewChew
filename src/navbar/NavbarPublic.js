@@ -58,7 +58,13 @@ const NavbarPublic = () => {
         <Image src={Logo} boxSize="150px" alt="logo" position="absolute" left="120px"/>
         <Box display="flex" flexDirection="row" paddingRight="40px">
             {/* <Button w="85px" colorScheme="#0c5446" variant="outline" position="absolute" left="920px" top="24px">Log In</Button> */}
-            <Button w="160px" bg="#ff6700" position="absolute" left="1020px" top="24px" color="white" onClick={handleClick}>Log In</Button>
+            <Button w="160px" bg="#ff6700" position="absolute" left="1020px" top="24px" color="white" onClick={handleClick}
+                _hover={{
+                    backgroundColor: "#bf4d00"
+                }}
+            >
+                Log In
+            </Button>
         </Box>
     </Box>
   );
