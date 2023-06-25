@@ -1,13 +1,50 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { SignedInContext } from "../../helper/Context";
-import { Box, Button } from "@chakra-ui/react";
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
+import {
+  Box,
+  Button,
+  HStack,
+  Img,
+  Modal,
+  ModalCloseButton,
+  ModalContent,
+  ModalHeader,
+  ModalOverlay,
+  useDisclosure,
+  VStack,
+  Textarea,
+  Tag,
+} from "@chakra-ui/react";
+import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import { addPost } from "../../firebase/firebaseFunctions";
 import Header from "../header/Header";
 
 const LoggedInHomePage = () => {
-  const { value, setValue } = useContext(SignedInContext);
+  const { value } = useContext(SignedInContext);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const [formValue, setFormValue] = useState("");
+  const [imageURL, setImageURL] = useState(`/images/UploadPhotoButton.svg`);
+  const [postType, setPostType] = useState("Cooked Creations");
+
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      setImageURL(e.target.result);
+    };
+
+    reader.readAsDataURL(file);
+  };
+
+  const handleClose = () => {
+    onClose();
+    setFormValue("");
+    setPostType("");
+    setImageURL(`/images/UploadPhotoButton.svg`);
+  };
 
   const getUsers = async () => {
     const querySnapshot = await getDocs(collection(db, "users"));
@@ -26,10 +63,24 @@ const LoggedInHomePage = () => {
     window.location.reload();
   };
 
-  // useEffect(() => {
-  //   console.log("inside home page");
-  //   console.log(value, " is the value WITHIN");
-  // }, []);
+  const PostTag = ({ text }) => {
+    return (
+      <Tag
+        onClick={() => {
+          setPostType(text);
+        }}
+        _hover={{
+          cursor: "pointer",
+        }}
+        backgroundColor={postType === text ? "#FF6700" : ""}
+        color={postType === text ? "white" : ""}
+        size="lg"
+        fontSize="16px"
+      >
+        {text}
+      </Tag>
+    );
+  };
 
   return (
     <Box>
@@ -38,9 +89,78 @@ const LoggedInHomePage = () => {
         <Button mt="20px" onClick={getUsers}>
           Read the data!
         </Button>
+        <Button onClick={onOpen}>Open the modal</Button>
         <Button onClick={handleClick}>handle click</Button>
-        {/* <Button onClick={addUser}>ADD ALEX</Button> */}
         <Button onClick={logout}>Log Out</Button>
+        <Modal isOpen={isOpen} onClose={handleClose}>
+          <ModalOverlay />
+          <ModalContent maxW="800px">
+            <HStack position="relative" backgroundColor="#fcfaef">
+              <label htmlFor="imageUpload">
+                <Img
+                  _hover={{
+                    cursor: "pointer",
+                  }}
+                  m="20px"
+                  boxSize="310px"
+                  src={imageURL}
+                  alt="upload image"
+                />
+                <input
+                  id="imageUpload"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  style={{ display: "none" }}
+                />
+              </label>
+              <VStack alignItems="baseline">
+                <ModalHeader
+                  pt="0px"
+                  pl="0px"
+                  fontSize="30px"
+                  className="header-font"
+                  color="#0C5446"
+                >
+                  Share your food!
+                </ModalHeader>
+                <Textarea
+                  fontSize="1em"
+                  width="420px"
+                  h="100px"
+                  placeholder="Write a caption..."
+                  value={formValue}
+                  onChange={(event) => {
+                    setFormValue(event.target.value);
+                  }}
+                />
+                <HStack mt="10px">
+                  <PostTag text="Cooked Creations" />
+                  <PostTag text="Free Food" />
+                </HStack>
+                <ModalCloseButton
+                  left="390px"
+                  top="-225px"
+                  position="relative"
+                />
+
+                <Button
+                  w="100%"
+                  backgroundColor="#FF6700"
+                  color="white"
+                  _hover={{ backgroundColor: "#BF4D00" }}
+                  isDisabled={
+                    formValue === "" ||
+                    imageURL === `/images/UploadPhotoButton.svg`
+                  }
+                  fontSize="18px"
+                >
+                  Post
+                </Button>
+              </VStack>
+            </HStack>
+          </ModalContent>
+        </Modal>
       </Box>
     </Box>
   );
